@@ -72,11 +72,13 @@ cc.Class({
         userName.string = user.nickName || user.nickname;
 
         // set avatar
-        cc.loader.load({url: user.avatarUrl, type: 'png'}, (err, texture) => {
-            if (err) console.error(err);
-            let userIcon = node.getChildByName('mask').children[0].getComponent(cc.Sprite);
-            userIcon.spriteFrame = new cc.SpriteFrame(texture);
-        });
+        if (user.avatarUrl) {
+            cc.loader.load({url: user.avatarUrl, type: 'png'}, (err, texture) => {
+                if (err) console.error(err);
+                let userIcon = node.getChildByName('mask').children[0].getComponent(cc.Sprite);
+                userIcon.spriteFrame = new cc.SpriteFrame(texture);
+            });
+        }
     }
 
 });
